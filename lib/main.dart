@@ -17,22 +17,34 @@ class MyApp extends StatelessWidget {
 class PlaylistScreen extends StatelessWidget {
   const PlaylistScreen({super.key});
 
+  final List<String> songs = const [
+    'Who Knows by Daniel Caesar',
+    'How to Save a Life by The Fray',
+    'Wonderwall by Oasis',
+    'oh yeah? by Steve Lacy',
+    'Apple Cider by beabadoobee',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('My Playlist')),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const NowPlayingScreen(songTitle: 'Sunset Drive'),
-              ),
-            );
-          },
-          child: const Text('Play First Song'),
-        ),
+      body: ListView.builder(
+        itemCount: songs.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            leading: const Icon(Icons.music_note),
+            title: Text(songs[index]),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => NowPlayingScreen(songTitle: songs[index]),
+                ),
+              );
+            },
+          );
+        },
       ),
     );
   }
