@@ -24,7 +24,12 @@ class PlaylistScreen extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const NowPlayingScreen(),
+              ),
+            );
           },
           child: const Text('Play First Song'),
         ),
